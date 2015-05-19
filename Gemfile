@@ -11,6 +11,10 @@ gem "newclear" # Completely wipe out the simulator and rebuild
 
 # Optional
 
+group :spec do # rake spec
+  gem 'motion-redgreen'
+end
+
 # gem "ProMotion-form"
 # gem "ProMotion-push", "~> 0.2" # Push Notifications
 # gem "ProMotion-map", "~> 0.3"  # PM::MapScreen

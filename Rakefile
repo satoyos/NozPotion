@@ -7,6 +7,28 @@ Bundler.require
 
 # require 'bubble-wrap'
 
+def rake_mode
+  case ARGV.join(' ')
+    when /simulator|device|pod|\A\z/ ; :simulator
+    when /spec/ ; :spec
+    when /frank/ ; :frank
+  end
+end
+
+Bundler.require
+
+case rake_mode
+  when :spec
+    # require 'awesome_print_motion'
+    Bundler.require :spec
+  when :frank
+    Bundler.require :frank
+  when :simulator
+    # require 'awesome_print_motion'
+    Bundler.require :simulator
+end
+
+
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings
 
@@ -53,6 +75,7 @@ Motion::Project::App.setup do |app|
   app.development do
     app.codesign_certificate = "iPhone Developer: YOURNAME"
     app.provisioning_profile = "signing/nozpotion.mobileprovision"
+    app.redgreen_style = :focused
   end
 
   app.release do
