@@ -75,7 +75,6 @@ Motion::Project::App.setup do |app|
   app.development do
     app.codesign_certificate = "iPhone Developer: YOURNAME"
     app.provisioning_profile = "signing/nozpotion.mobileprovision"
-    app.redgreen_style = :focused
   end
 
   app.release do
@@ -88,6 +87,9 @@ Motion::Project::App.setup do |app|
     app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
     app.entitlements['keychain-access-groups'] = [ app.seed_id + '.' + app.identifier ]
   end
+
+  app.redgreen_style = :focused if rake_mode == :spec
+
 
   puts "Name: #{app.name}"
   puts "Using profile: #{app.provisioning_profile}"
