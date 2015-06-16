@@ -33,7 +33,7 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings
 
   app.name = 'NozPotion'
-  app.identifier = 'com.your_domain_here.nozpotion'
+  app.identifier = 'com.sato0123.nozpotion'
 
   app.short_version = '0.1.0'
   # Get version from git
@@ -67,20 +67,21 @@ Motion::Project::App.setup do |app|
 
   app.pods do
     pod 'JMImageCache'
+    pod 'SDWebImage'
   #   pod 'JGProgressHUD'
   #   pod 'SVProgressHUD'
   #   pod "FontasticIcons"
   end
 
   app.development do
-    app.codesign_certificate = "iPhone Developer: YOURNAME"
-    app.provisioning_profile = "signing/nozpotion.mobileprovision"
+    app.codesign_certificate = 'iPhone Developer: Yoshifumi Sato'
+    app.provisioning_profile = ENV['PROVISIONING_PROFILE_DEVELOPMENT']
   end
 
   app.release do
     app.entitlements['get-task-allow'] = false
-    app.codesign_certificate = 'iPhone Distribution: YOURNAME'
-    app.provisioning_profile = "signing/nozpotion.mobileprovision"
+    app.codesign_certificate = 'iPhone Developer: Yoshifumi Sato'
+    app.provisioning_profile = ENV['PROVISIONING_PROFILE_DISTRIBUTION']
     app.entitlements['beta-reports-active'] = true # For TestFlight
 
     app.seed_id = "YOUR_SEED_ID"
